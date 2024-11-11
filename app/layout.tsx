@@ -1,6 +1,27 @@
 import type { Metadata } from "next";
+import {Inter, Roboto} from "next/font/google"
 import localFont from "next/font/local";
 import "./globals.css";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  
+});
+const roboto = Roboto({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-roboto",
+});
+
+const nunitoLocal = localFont({
+  src: "./fonts/Nunito.ttf",
+  variable: "--font-nunito",
+});
+const generalSansLocal = localFont({
+  src: "./fonts/GeneralSans.otf",
+  variable: "--font-generalsans",
+});
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -25,8 +46,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      {/* ${inter.className} ${roboto.className} ${nunitoLocal.className}   */}
+      {/* <body className={`antialiased `}>{children}</body> */}
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${generalSansLocal.className} antialiased`}
       >
         {children}
       </body>
