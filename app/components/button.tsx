@@ -10,7 +10,7 @@ export function Button({ children, className, ...rest }: ButtonProps) {
     <button
       {...rest}
       className={clsx(
-        "border-none text-sm font-medium transition-colors  text-[1rem] aria-disabled:cursor-not-allowed aria-disabled:opacity-50 ",
+        "border rounded-md w-full p-3 text-sm font-medium transition-colors  text-[1rem] aria-disabled:cursor-not-allowed aria-disabled:opacity-50 ",
         className
       )}
     >
