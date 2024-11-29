@@ -1,70 +1,45 @@
 "use server";
 
-import { z } from "zod";
+
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { parseWithZod } from "@conform-to/zod";
+import { LoginSchema, UserSchema } from "./zodSchemas";
 
 export type State = {
   errors?: {
-    username?: string[];
-    email?: string[];
-    password?: string[];
+    username?: string[] | null;
+    email?: string[] | null;
+    password?: string[] | null;
   };
   message?: string | null;
 };
 
-const UserSchema = z.object({
-  id: z.string(),
-  username: z.string({ invalid_type_error: "Invalid name" }),
-  //   mobile: z.coerce.number(),
-  email: z
-    .string({
-      invalid_type_error: "invalid email please type something different",
-    })
-    .email(),
-  password: z.string(),
-  status: z.enum(["active", "inactive"]),
-  date: z.string(),
-});
 
 const CreateUser = UserSchema.omit({ id: true, date: true, status: true });
 
-export async function createUser(prevState: State, formData: FormData) {
-  //   const { fullName, password, email } = CreateUser.parse({
-  //     fullName: formData.get("fullName"),
-  //     password: formData.get("password"),
-  //     email: formData.get("email"),
-  //   });
+export async function createUser(state: unknown, formData: FormData) {
+  console.log(formData.get("username"));
 
-  console.log(formData);
+    const validator = parseWithZod(formData, {
+      schema: CreateUser
+    });
 
-  const validatedFields = CreateUser.safeParse({
-    username: formData.get("username"),
-    password: formData.get("password"),
-    email: formData.get("email"),
+    if(validator.status !== 'success'){
+      return validator.reply()
+    }
+
+}
+
+export async function loginUser(state: unknown, formData: FormData) {
+  ;
+
+  const validator = parseWithZod(formData, {
+    schema: LoginSchema,
   });
 
-  if (!validatedFields.success) {
-    console.log(validatedFields);
-
-    return {
-      errors: validatedFields.error.flatten().fieldErrors,
-      message: "Missing Fields. Failed to Create User.",
-    };
+  if (validator.status !== "success") {
+    return validator.reply();
   }
-  try {
-    console.log('hello')
-  } catch (error) {
-    return {
-      message: "Database Error: Failed to Create Invoice.",
-    };
-  }
-
-  // const date = new Date().toISOString().split("T")[0];
-  const status = "active";
-
-  // DB LOGIC SHOULD BE HERE
-
-  revalidatePath("/signup");
-  redirect("/signup");
 }
+

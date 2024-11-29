@@ -9,10 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@conform-to/react": "^1.2.2",
+    "@conform-to/zod": "^1.2.2",
     "clsx": "^2.1.1",
     "next": "15.0.2",
     "react": "19.0.0-rc-a99d8e8d-20240916",
     "react-dom": "19.0.0-rc-a99d8e8d-20240916",
+    "use-debounce": "^10.0.4",
     "zod": "^3.23.8"
   },
   "devDependencies": {

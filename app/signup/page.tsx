@@ -2,6 +2,7 @@ import Link from "next/link";
 import { FormTitle } from "../components/form-title";
 import { OtherAuth } from "../components/other-auth";
 import SignupForm from "../components/signup-form";
+import Footer from "../components/Footer";
 
 
 export default function Home() {
@@ -18,6 +19,7 @@ export default function Home() {
         <span className="text-colorOne ml-4"><Link href={"/login"}>Log In</Link></span>
         
       </p>
+      <Footer />
     </div>
   );
 }
