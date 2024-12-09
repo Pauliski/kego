@@ -109,16 +109,6 @@ setShowPassword(!showPassword)
             <RevealIcon />
           </button>
 
-          {/* <CorrectIcon
-            className={`absolute bottom-3 right-4 peer-placeholder-shown:hidden ${
-              typeof fields.password.errors == "undefined" ? "block" : "hidden"
-            }`}
-          /> */}
-          {/* <WarningIcon
-            className={`absolute bottom-3 right-4 peer-placeholder-shown:hidden ${
-              typeof fields.password.errors !== "undefined" ? "block" : "hidden"
-            }`}
-          /> */}
         </div>
 
         <>
@@ -153,7 +143,7 @@ setShowPassword(!showPassword)
           })}
         </p>
         <Button
-          className={`${
+          className={`w-full ${
             !isFormValid() ? "bg-grayed text-white" : "bg-colorOne text-white"
           }`}
         >

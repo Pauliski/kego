@@ -187,7 +187,7 @@ export default function SignupForm() {
         </p>
         <Button
           type="submit"
-          className={`${
+          className={`w-full ${
             !isFormValid()? "bg-grayed text-white" : "bg-colorOne text-white"
           }`}
         >
