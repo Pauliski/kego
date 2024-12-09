@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import {Inter, Roboto} from "next/font/google"
 import localFont from "next/font/local";
+import Image from "next/image";
 import "./globals.css";
+import Navbar from "./components/Navbar";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -51,6 +53,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${generalSansLocal.className} antialiased`}
       >
+        <Navbar />
         {children}
       </body>
     </html>
